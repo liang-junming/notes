@@ -17,6 +17,7 @@ Mermaid是一个基于Javascript的图表绘制工具，它使用Markdown内置�
 - 免费开源
 - 跨平台
 - 轻量
+- 可脚本化
 
 ## 流程图(Flowchat)
 
@@ -220,9 +221,232 @@ graph LR
 
 ### 连接线(link)
 
-## 时序图(Sequence diagrams)
+箭头
+
+``` text
+A --> B
+```
+
+``` mermaid
+graph LR
+  A --> B
+```
+
+``` text
+A -- Text on link --> B
+
+or
+
+A -->| Text on link | B
+```
+
+``` mermaid
+graph LR
+  A -- Text on link --> B
+```
+
+实线
+
+``` text
+A --- B
+```
+
+```mermaid
+graph LR
+  A --- B
+```
+
+``` text
+A -- Text on link --- B
+
+or
+
+A ---| Text on link | B
+```
+
+``` mermaid
+graph LR
+  A -- Text on link --- B
+```
+
+虚线
+
+``` text
+A -.-> B
+```
+
+``` mermaid
+graph LR
+  A -.-> B
+```
+
+``` text
+A -. Text on the link .-> B
+
+or
+
+A -.->| Text on the link | B
+```
+
+``` mermaid
+graph LR
+  A -. Text on the link .-> B
+```
+
+粗线
+
+``` text
+A ==> B
+```
+
+``` mermaid
+graph LR
+  A ==> B
+```
+
+``` text
+A == Text on the link ===> B
+
+or
+
+A ==>| Text on the link | B
+```
+
+``` mermaid
+graph LR
+  A == Text on the link ===> B
+```
+
+链
+
+``` text
+A --> B
+B --> C
+
+or
+
+A --> B --> C
+```
+
+``` mermaid
+graph LR
+  A --> B --> C
+```
+
+``` text
+A --> B
+A --> C
+B --> D
+C --> D
+
+or
+
+A --> B & C --> D
+```
+
+``` mermaid
+graph LR
+  A --> B & C --> D
+```
+
+长连接线
+
+``` text
+A --> B --> C
+A ---> D
+```
+
+``` mermaid
+graph LR
+  A --> B --> C
+  A ---> D
+```
+
+连接线长度对照表
+
+| Length | 1 | 2 | 3 |
+| ------ | --- | --- | --- |
+| Normal | \-\-\- | ---- | ----- |
+| Normal with arrow | \-\-> | \-\-\-> | ----> |
+| Thick | === | ==== | ===== |
+| Thick with arrow | ==> | ===> | ====> |
+| Dotted | -.- | -.\.- | -...- |
+| Dotted with arrow | -.-> | -.\.-> | -...-> |
+
+特殊字符
+
+``` text
+id["This is the (text) in the box"]
+```
+
+``` mermaid
+graph LR
+  id["This is the (text) in the box"]
+```
+
+>**Note:** 括号属于特殊字符，这里如果没有用双引号把文字包起来将报错
+
+子图
+
+``` text
+subgraph s1[one]
+  A1 --> A2
+end
+subgraph s2[two]
+  B1 --> B2
+end
+subgraph s3[three]
+  C1 --> C2
+end
+C1 --> A2
+D --> A2
+```
+
+``` mermaid
+graph TD
+  subgraph s1[one]
+    A1 --> A2
+  end
+  subgraph s2[two]
+    B1 --> B2
+  end
+  subgraph s3[three]
+    C1 --> C2
+  end
+  C1 --> A2
+  D --> A2
+```
 
 ## 类图(Class diagrams)
+
+示例
+
+``` mermaid
+classDiagram
+  class Animal
+  Animal <|-- Duck
+  Animal <|-- Fish
+  Animal <|-- Zebra
+  Animal : +int age
+  Animal : +String gender
+  Animal: +isMammal()
+  Animal: +mate()
+  class Duck{
+    +String beakColor
+    +swim()
+    +quack()
+  }
+  class Fish{
+    -int sizeInFeet
+    -canEat()
+  }
+  class Zebra{
+    +bool is_wild
+    +run()
+  }
+```
+
+## 时序图(Sequence diagrams)
 
 ## 甘特图(Gantt diagrams)
 
