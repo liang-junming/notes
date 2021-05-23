@@ -21,7 +21,18 @@ Mermaid是一个基于Javascript的图表绘制工具，它使用Markdown内置�
 
 ## 流程图(Flowchat)
 
-### 语法格式
+示例
+
+``` mermaid
+graph TD
+  A[Christmas] -->|Get money| B(Go shopping)
+  B --> C{Let me think}
+  C -->|One| D[Laptop]
+  C -->|Two| E[iPhone]
+  C -->|Three| F[fa:fa-car Car]
+```
+
+### 定义流程图
 
 ```` text
 ``` mermaid
@@ -427,8 +438,8 @@ classDiagram
   Animal <|-- Duck
   Animal <|-- Fish
   Animal <|-- Zebra
-  Animal : +int age
-  Animal : +String gender
+  Animal: +int age
+  Animal: +String gender
   Animal: +isMammal()
   Animal: +mate()
   class Duck{
@@ -446,8 +457,251 @@ classDiagram
   }
 ```
 
+### 定义类图
+
+```` text
+``` mermaid
+classDiagram
+  class A{
+    +int age
+    +run()
+  }
+  class B{
+    +String name
+    +speak()
+  }
+  A <|-- B
+```
+````
+
+``` mermaid
+classDiagram
+  class A{
+    +int age
+    +run()
+  }
+  class B{
+    +String name
+    +speak()
+  }
+  A <|-- B
+```
+
+>**Note:**  
+>`classDiagram`表示这是一个类图  
+>`class A`定义一个类  
+>`+int age`定义类的成员变量  
+>`+run()`定义类的成员函数  
+>`<|--`定义两个类之间的关系
+
+### 类成员
+
+使用:（冒号）
+
+```` text
+``` mermaid
+classDiagram
+  class BankAccount
+  BankAccount : +String owner
+  BankAccount : +BigDecimal balance
+  BankAccount : +deposit(amount)
+  BankAccount : +withdrawal(amount)
+```
+````
+
+``` mermaid
+classDiagram
+  class BankAccount
+  BankAccount : +String owner
+  BankAccount : +BigDecimal balance
+  BankAccount : +deposit(amount)
+  BankAccount : +withdrawal(amount)
+```
+
+使用{}（大括号）
+
+```` text
+``` mermaid
+classDiagram
+  class BankAccount{
+    +String owner
+    +BigDecimal balance
+    +deposit(amount)
+    +withdrawl(amount)
+  }
+```
+````
+
+``` mermaid
+classDiagram
+  class BankAccount{
+    +String owner
+    +BigDecimal balance
+    +deposit(amount)
+    +withdrawl(amount)
+  }
+```
+
+>**Note:** Mermaid根据是否存在括号()来区分属性和函数/方法，带()的被视为函数/方法，反之则被视为属性
+
+返回类型
+
+``` text
++deposit(amount) bool
++withdrawl(amount) int
+```
+
+``` mermaid
+classDiagram
+  class BankAccount{
+    +deposit(amount) bool
+    +withdrawl(amount) int
+  }
+```
+
+>**Note:** 可以在函数/方法定义的结尾加上返回的数据类型，方法定义和返回类型之间必须留有一个空格
+
+抽象/静态
+
+``` text
+ +deposit(amount)* bool
+ +withdrawl(amount)$
+```
+
+``` mermaid
+classDiagram
+  class BankAccount{
+    +deposit(amount)* bool
+    +withdrawl(amount)$
+  }
+```
+
+>**Note:** 在方法后面增加`*`表示抽象，增加`$`表示静态
+
+权限
+
+- `+` Public
+- `-` Private
+- `#` Protected
+- `~` Package/Internal
+
+### 关系
+
+|Type|Description|
+|---|---|
+|-\-\|>|继承(Inheritance)|
+|-\-*|复合(Composition)
+|-\-o|聚合(Aggregation)|
+|-\->|关联(Association)|
+|.\.>|依赖(Dependency)|
+|.\.\|>|实现(Realization)|
+|-\-|Link(Solid)|
+|.\.|Link(Dashed)|
+
+``` text
+classA <|-- classB
+classC *-- classD
+classE o-- classF
+classG <-- classH
+classK <.. classL
+classM <|.. classN
+classI -- classJ
+classO .. classP
+```
+
+``` mermaid
+classDiagram
+  classA <|-- classB
+  classC *-- classD
+  classE o-- classF
+  classG <-- classH
+  classK <.. classL
+  classM <|.. classN
+  classI -- classJ
+  classO .. classP
+```
+
+可以使用标签来描述两个类之间的关系性质。此外箭头也可以用于相反的方向
+
+``` text
+classA --|> classB : Inheritance
+classC --* classD : Composition
+classE --o classF : Aggregation
+classG --> classH : Association
+classK ..> classL : Dependency
+classM ..|> classN : Realization
+classI -- classJ : Link(Solid)
+classO .. classP : Link(Dashed)
+```
+
+``` mermaid
+classDiagram
+  classA --|> classB : Inheritance
+  classC --* classD : Composition
+  classE --o classF : Aggregation
+  classG --> classH : Association
+  classK ..> classL : Dependency
+  classM ..|> classN : Realization
+  classI -- classJ : Link(Solid)
+  classO .. classP : Link(Dashed)
+```
+
 ## 时序图(Sequence diagrams)
+
+``` mermaid
+sequenceDiagram
+  autonumber
+  Alice->>John: Hello John, how are you?
+  loop Healthcheck
+    John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts!
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+```
 
 ## 甘特图(Gantt diagrams)
 
+``` mermaid
+gantt
+  dateFormat  YYYY-MM-DD
+  title       Adding GANTT diagram functionality to mermaid
+  excludes    weekends
+
+  section A section
+  Completed task            :done,    des1, 2014-01-06,2014-01-08
+  Active task               :active,  des2, 2014-01-09, 3d
+  Future task               :         des3, after des2, 5d
+  Future task2              :         des4, after des3, 5d
+
+  section Critical tasks
+  Completed task in the critical line :crit, done, 2014-01-06,24h
+  Implement parser and jison          :crit, done, after des1, 2d
+  Create tests for parser             :crit, active, 3d
+  Future task in critical line        :crit, 5d
+  Create tests for renderer           :2d
+  Add to mermaid                      :1d
+
+  section Documentation
+  Describe gantt syntax               :active, a1, after des1, 3d
+  Add gantt diagram to demo page      :after a1  , 20h
+  Add another diagram to demo page    :doc1, after a1  , 48h
+
+  section Last section
+  Describe gantt syntax               :after doc1, 3d
+  Add gantt diagram to demo page      :20h
+  Add another diagram to demo page    :48h
+```
+
 ## 饼图(Pie chart diagrams)
+
+``` mermaid
+pie
+  title Key elements in Product X
+  "Calcium" : 42.96
+  "Potassium" : 50.05
+  "Magnesium" : 10.01
+  "Iron" :  5
+```
+
