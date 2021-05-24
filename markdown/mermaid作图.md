@@ -1,6 +1,6 @@
 # Mermaid作图
 
-## Mermaid简洁
+## Mermaid简介
 
 ![mermaid](img/mermaid.png)
 
@@ -35,10 +35,10 @@ graph TD
 ### 定义流程图
 
 ```` text
-``` mermaid
+​``` mermaid
 graph LR
   A --> B
-```
+​```
 ````
 
 ``` mermaid
@@ -102,7 +102,7 @@ graph LR
 
 > **Note** 可通过[]另外指定显示在方框中的文字
 
-圆边
+圆角
 
 ``` text
 id(The text)
@@ -460,7 +460,7 @@ classDiagram
 ### 定义类图
 
 ```` text
-``` mermaid
+​``` mermaid
 classDiagram
   class A{
     +int age
@@ -471,7 +471,7 @@ classDiagram
     +speak()
   }
   A <|-- B
-```
+​```
 ````
 
 ``` mermaid
@@ -499,14 +499,14 @@ classDiagram
 使用:（冒号）
 
 ```` text
-``` mermaid
+​``` mermaid
 classDiagram
   class BankAccount
   BankAccount : +String owner
   BankAccount : +BigDecimal balance
   BankAccount : +deposit(amount)
   BankAccount : +withdrawal(amount)
-```
+​```
 ````
 
 ``` mermaid
@@ -521,7 +521,7 @@ classDiagram
 使用{}（大括号）
 
 ```` text
-``` mermaid
+​``` mermaid
 classDiagram
   class BankAccount{
     +String owner
@@ -529,7 +529,7 @@ classDiagram
     +deposit(amount)
     +withdrawl(amount)
   }
-```
+​```
 ````
 
 ``` mermaid
