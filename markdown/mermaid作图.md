@@ -590,7 +590,7 @@ classDiagram
 |Type|Description|
 |---|---|
 |-\-\|>|继承(Inheritance)|
-|-\-*|复合(Composition)
+|-\-*|复合(Composition)|
 |-\-o|聚合(Aggregation)|
 |-\->|关联(Association)|
 |.\.>|依赖(Dependency)|
