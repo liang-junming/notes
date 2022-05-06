@@ -40,6 +40,8 @@
     }
     ```
 
+    在Go中，以大写字母开头的命名将会被导出
+
 3. 创建night目录和night`package`
 
     ``` shell
