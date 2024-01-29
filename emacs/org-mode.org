@@ -1,98 +1,182 @@
 #+STARTUP: CONTENT
 * org-mode
 ** 显示
-   - 全局显示状态:
-     Shift-Tab 循环切换全局显示状态
-     文件开头可使用 #+STARTUP: 设置当前文件默认显示是状态
-     + OVERVIEW(default) :: 概览
-     + CONTENTS :: 目录
-     + SHOW ALL :: 全部显示
-   - 标题显示状态
-     Tab 循环切换当前光标下的标题显示状态
-     + FOLDED :: 折叠
-     + CILDREN :: 只显示当前标题下的子项
-                  包括标题内容、子标题，子标题的内容和子标题的子标题不会显示
-                  列表被视作标题内容
-     + SUBTREE :: 全部显示
-   - Sparse Trees
-     [C-c /] 使用相关命令过滤显示的标题
++ 全局显示状态
+  Shift-Tab 循环切换全局显示状态
+  文件开头可使用 #+STARTUP: 设置当前文件默认显示是状态
+  + OVERVIEW(default) :: 概览
+  + CONTENTS :: 目录
+  + SHOW ALL :: 全部显示
++ 标题显示状态
+  Tab 循环切换当前光标下的标题显示状态
+  + FOLDED :: 折叠
+  + CILDREN :: 只显示当前标题下的子项
+    包括标题内容、子标题，子标题的内容和子标题的子标题不会显示
+    列表被视作标题内容
+  + SUBTREE :: 全部显示
++ Sparse Trees
+  [C-c /] 使用相关命令过滤显示的标题
 ** 文档结构
 *** 标题
-    org 用*号表示标题的层级关系
-    #+begin_src org
-    * head1
+org 用 * 号表示标题的层级关系
+    #+BEGIN_SRC org
+      ,* head1
       some text...
-    ** head1_1
-       some text...
-    ** head1_2
-       some text...
-    * head2
-       some text...
-    #+end_src
+      ,** head1_1
+      some text...
+      ,** head1_2
+      some text...
+      ,* head2
+      some text...
+#+END_SRC
 **** 创建标题
-     手动输入*号+空格+标题名称
-     C-Enter 在当前光标所处的标题（包括标题的内容）后面创建一个同级标题
-     M-Enter 将当前光标后的内容拆分层一个同级标题，光标后的第一行字作为标题名称
+手动输入 * 号 + 空格 + 标题名称
+C-Enter 在当前光标所处的标题（包括标题的内容）后面创建一个同级标题
+M-Enter 将当前光标后的内容拆分层一个同级标题，光标后的第一行字作为标题名称
 **** 标题操作
-     [M-Left/Right] 将当前标题升级或降级
-     [M-Up/Down] 与上下同级别的标题交换位置
-     [M-Shift-Up/Down] 可跨越级别上下交换位置
-     [C-c C-w] 移动当前标题至指定的某个一级标题下
-     [C-x n s/w] 只显示当前标题/显示所有内容
+[M-Left/Right] 将当前标题升级或降级
+[M-Up/Down] 与上下同级别的标题交换位置
+[M-Shift-Up/Down] 可跨越级别上下交换位置
+[C-c C-w] 移动当前标题至指定的某个一级标题下
+[C-x n s/w] 只显示当前标题/显示所有内容
 **** 标题跳转
-     [C-c C-p]    上一个标题
-     [C-c C-n]    下一个标题
-     [C-c C-b]    上一个同级标题
-     [C-c C-f]    下一个同级标题
-     [C-c C-u]    跳转到父标题
+[C-c C-p]    上一个标题
+[C-c C-n]    下一个标题
+[C-c C-b]    上一个同级标题
+[C-c C-f]    下一个同级标题
+[C-c C-u]    跳转到父标题
 *** 列表
-    + 列表分为有序列表和无序列表
-    + 可使用 :: 添加说明
-    + [ ] 可使用 [ ] 创建带复选框的列表
-    + 有序列表和无序列表可以互相嵌套，同样也可以折叠
-    + 输入前缀 1. 或 1) 可创建有序列表：
-      1. 10
-      2. 20
-         - [ ] aaa
-         - [X] bbb
-      3. 30
-    + 无序列表用 -, + 或 * 创建（为了和标题区分，不建议用*号）：
-      - red
-      - green :: color
-      - yellow
-        1) aaa
-        2) bbb
-    + 快捷键
-      - TAB :: 折叠
-      - M-Enter :: 新建同级列表
-      - M-Shift-Enter :: 新建带有复选框的同级项
-      - M-Left/Right :: 将当前列表升级或降级
-      - M-Up/Down :: 与上下同级别列表交换位置
-      - M-Shift-Left/Right :: 跨越级别上下交换位置
-      - C-c C-c :: 勾选复选框
-      - C-c - :: 修改列表前缀
++ 列表分为有序列表和无序列表
++ 可使用 :: 添加说明
++ 可使用 [ ] 创建带复选框的列表
++ 有序列表和无序列表可以互相嵌套，同样也可以折叠
++ 输入前缀 1. 或 1) 可创建有序列表：
++ 可以在列表标题的任何地方插入 *[/]* 或 *[%]* 显示进度
+  1. 10
+  2. [-] 20 [1/2]
+     + [ ] aaa
+     + [X] bbb
+  3. 30
++ 无序列表用 -, + 或 * 创建（为了和标题区分，不建议用*号）：
+  - red
+  - green :: color
+  - yellow
+    1) aaa
+    2) bbb
++ 快捷键
+  - TAB :: 折叠
+  - M-Enter :: 新建同级列表
+  - M-Shift-Enter :: 新建带有复选框的同级项
+  - M-Left/Right :: 将当前列表升级或降级
+  - M-Up/Down :: 与上下同级别列表交换位置
+  - M-Shift-Left/Right :: 跨越级别上下交换位置
+  - C-c C-c :: 勾选复选框
+  - C-c - :: 修改列表前缀
 *** 表格
-    Org带有一个快速直观的表格编辑器，如果与Emacs的*calc*包一起使用可以实现类似电子表格的计算。
-    + 创建表格
-      使用多个 ｜ 直接创建表格
-      | name          |    age |               tel |
-      |---------------+--------+-------------------|
-      | Han Meimei    |     16 |               323 |
-      | Li Lei        | 哈哈18 |             12345 |
-      | Zhang Quandan |     20 |              2222 |
-      | 张全蛋        |     22 | 12345    没用电话 |
-      | 李磊          |     22 |      aaa sss 座机 |
-    + 快捷键
-      - C-C C-c :: 重新对齐表格
-      - TAB :: 移动到下一个单元格/如果在最后一个单元格则创建新行
-      - S-TAB :: 移动到上一个单元格
-      - Enter :: 移动到下一行（不能垮过分割线）/创建新行
-      - M-Left/Right :: 与左或右边的列交换位置
-      - M-Up/Down :: 与上或下一行交换位置 
-      - M-Shift-Left :: 删除当前列
-      - M-Shift-Right :: 在当前列的左边插入新列
-      - M-Shift-Up :: 删除当前行
-      - M-Shift-Down :: 在当前行的上方插入新行
-      - C-c - :: 在当前行的下面插入分割线
-      - C-c Enter :: 在当前行的下面插入分割线，并移动到分割线的下一行
-      - C-c ^ :: 根据当前列对表格进行排序
+Org 带有一个快速直观的表格编辑器，如果与 Emacs 的 *calc* 包一起使用可以实现类似电子表格的计算。
++ 创建表格
+  使用多个 ｜ 直接创建表格
+  | name          |    age |               tel |
+  |---------------+--------+-------------------|
+  | Han Meimei    |     16 |               323 |
+  | Li Lei        | 哈哈18 |             12345 |
+  | Zhang Quandan |     20 |              2222 |
+  | 张全蛋        |     22 | 12345    没用电话 |
+  | 李磊          |     22 |      aaa sss 座机 |
++ 快捷键
+  - C-C C-c :: 重新对齐表格
+  - TAB :: 移动到下一个单元格/如果在最后一个单元格则创建新行
+  - S-TAB :: 移动到上一个单元格
+  - Enter :: 移动到下一行（不能垮过分割线）/创建新行
+  - M-Left/Right :: 与左或右边的列交换位置
+  - M-Up/Down :: 与上或下一行交换位置 
+  - M-Shift-Left :: 删除当前列
+  - M-Shift-Right :: 在当前列的左边插入新列
+  - M-Shift-Up :: 删除当前行
+  - M-Shift-Down :: 在当前行的上方插入新行
+  - C-c - :: 在当前行的下面插入分割线
+  - C-c Enter :: 在当前行的下面插入分割线，并移动到分割线的下一行
+  - C-c ^ :: 根据当前列对表格进行排序
+** 代办事项
+当标题以 TODO 开头时它就成为了一个TODO项，例如：
+`*** TODO Write letter to Sam`
+常用命令：
+*C-c C-t* 在 unmarked->TODO->DONE 之间循环切换状态
+*C-c / t* 在稀疏树中显示 TODO 项
+*C-c ,* 设置当前标题的优先级
+*** 多状态定义
+全局定义
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "TODO" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+      #+END_SRC
+竖线"|"将 TODO 关键字（还需要进一步的动作）和 DONE 状态（不需要进一步的动作）分割开，
+如果不给出竖直线最后一个状态会作为 DONE 状态
+
+有时可能希望同时使用几个不同的 TODO 状态集合，例如，你可能想要一个基本的 TODO/DONE,
+已经一个修改 bug 的工作流程和一个隔开的状态来表示取消的项目，可以这样设置：
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "|" "DONE(d)")
+          (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+          (sequence "|" "CANCELED(c)")))
+        #+END_SRC
+在关键字后面括号中给出快捷字母，当使用 *C-c C-t* 时会询问让你输入一个字母（这种方式不够便捷）
+
+局部定义
+定义只在一个文件中有效的 TODO 关键字，可以在文件中的任意地方给出下面的文本：
+#+BEGIN_SRC org
+  ,#+TODO: TODO DONE
+  ,#+TODO: REPORT BUG | FIXED
+  ,#+TODO: | CANCELED
+#+END_SRC
+当改变某一行后，光标停留在改变行上，用 *C-c C-c* 让改变生效
+列：
+#+TODO: TODO DONE
+#+TODO: RR BB | NN FF
+**** TODO Test define TODO keywords
+**** RR Test define TODO keywords
+*** 时间日志
+当改变一个 TODO 状态为 DONE 时，或者每次改变一个 TODO 项的状态时， Org 都会自动记录时间戳
+打开时间日志跟踪功能：
+#+BEGIN_SRC emacs-lisp
+  (setq org-log-done 'tmie)
+#+END_SRC
+如果想在插入时间戳的同时写一个记录可以这样设置：
+#+BEGIN_SRC emacs-lisp
+  (setq org-log-done 'note)
+#+END_SRC
+
+**** DONE Test TODO close time
+CLOSED: [2023-11-10 Fri 17:13]
+*** 任务细分
+可以将一个任务分成几个小任务，可以在主任务标题的任何地方插入 *[/]* 或者 *[%]* 分别以百分比或者分数显示当前
+主任务的完成进度，当子任务状态有变化时进度标记也会随之更新；也可以使用列表加复选框的方式
+**** TODO Organize party [33%]
+***** TODO Call people [1/2]
+****** TODO Peter
+****** DONE Sarah
+***** TODO Buy food
+***** DONE Talk to neighbor
+**** Organize party [1/3]
++ [-] Call people
+  + [ ] Peter
+  + [X] Sarah
++ [X] Order food
++ [ ] think about what music to play
+*** 时间戳
+**** 时间戳格式
+使用命令 *C-c .* 可以创建最基本的时间戳，通过再次编辑可以分为多种格式
+时间戳可以出现在标题和正文的任何地方，它能使条目只在特定的日期才出现在议程表中，以下是几种时间戳
++ 日期 <2023-09-10 Sun> <2023-01-18>
++ 日期加时间 <2023-11-21 Tue 8:10>
++ 时间间隔（天d 周w 月m 年y） <2023-11-14 Tue +1w> <2023-11-14 Tue +1m> <2023-11-14 Tue 10:00 +2h>
++ 时间段 <2023-11-13 Mon>--<2023-11-14 Tue> <2023-11-14 Tue 08:00-10:00>
++ 非激活的时间戳 [2023-11-11 Sat 10:10]
+**** 截止期限和计划安排
+使用命令 *C-c C-d* 在标题下面插入一个带有 *DEADLINE* 关键字的时间戳
+在截止日期，任务会在议程中；已经过期的任务和在 org-deadline-warning-days 后即将过期的任务会在今天的
+议程中被提醒，直到任务被标记为 DONE
+
+使用命令 *C-c C-s* 在标题下面插入一个带有 *SCHEDULED* 关键字的时间戳
+标题会在给定的日期出现在议程中，对于过期的日程安排会被自动编辑为今天的日期并给出提醒，直到被标记为 DONE
