@@ -550,7 +550,7 @@ pkg-config是linux中用于管理库的依赖关系以及提供库的编译和�
    AC_OUTPUT
    ```
 
-   这里第一步初始化libtool如果不添加也可以编译成功，区别是添加这个之后在链接程序的时候会使用libtool工具，libtool工具会把库的安装路径添加到gcc的链接参数中作为rpath写bin文件中，这样即使say库没有安装在标准lib目录也能在执行bin文件的时候根据rpath成功加载say库并成功执行程序
+   这里第一步初始化libtool如果不添加也可以编译成功，区别是添加这个之后在链接程序的时候会使用libtool工具，libtool工具会把库的安装路径添加到gcc的链接参数中作为rpath写入bin文件中，这样即使say库没有安装在标准lib目录也能在执行bin文件的时候根据rpath成功加载say库并成功执行程序
 
    可以通过readelf命令查看bin文件中的rpath值
 
@@ -558,6 +558,20 @@ pkg-config是linux中用于管理库的依赖关系以及提供库的编译和�
    readelf -d hello | grep RPATH
    ```
 
+3. 执行libtoolize命令生成ltmain.sh
+
+4. 执行aclocal、autoconfig、autoheader、automake等步骤同创建autoconf&automake工程步骤一致
+
+5. 开始编译
+
+   ```shell
+   $ export PKG_CONFIG_PATH=/path/to/pkgconfig
+   $ ./configure
+   $ make
+   $ make install
+   ```
+
+   [^注意]: 这里编译步骤多一步创建环境变量PKG_CONFIG_PATH的步骤，是因为执行./configure的时候会根据这个路径遍历.pc文件去查找依赖的say库
 ## 官方文档地址
 
 [automake]: https://www.gnu.org/software/automake/manual/automake.html
