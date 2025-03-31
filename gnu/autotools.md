@@ -474,7 +474,7 @@ pkg-config是linux中用于管理库的依赖关系以及提供库的编译和�
 5. 开始编译
 
    ```shell
-   $ ./configure
+   $ ./configure 
    $ make
    $ make install
    ```

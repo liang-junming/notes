@@ -97,6 +97,31 @@ Org 带有一个快速直观的表格编辑器，如果与 Emacs 的 *calc* 包�
   - C-c - :: 在当前行的下面插入分割线
   - C-c Enter :: 在当前行的下面插入分割线，并移动到分割线的下一行
   - C-c ^ :: 根据当前列对表格进行排序
+*** 强调
++ *bold*
+  #+BEGIN_SRC org
+    ,*bold*
+  #+END_SRC
++ /italic/
+  #+BEGIN_SRC org
+    /italic/
+  #+END_SRC
++ _underline_
+  #+BEGIN_SRC org
+    _underline_
+  #+END_SRC
++ =verbatim=
+  #+BEGIN_SRC org
+    =verbatim=
+  #+END_SRC
++ ~code~
+  #+BEGIN_SRC org
+    ~code~
+  #+END_SRC
++ +strike-through+
+  #+BEGIN_SRC org
+    +strike-through+
+  #+END_SRC
 ** 代办事项
 当标题以 TODO 开头时它就成为了一个TODO项，例如：
 `*** TODO Write letter to Sam`
@@ -114,7 +139,7 @@ Org 带有一个快速直观的表格编辑器，如果与 Emacs 的 *calc* 包�
 如果不给出竖直线最后一个状态会作为 DONE 状态
 
 有时可能希望同时使用几个不同的 TODO 状态集合，例如，你可能想要一个基本的 TODO/DONE,
-已经一个修改 bug 的工作流程和一个隔开的状态来表示取消的项目，可以这样设置：
+以及一个修改 bug 的工作流程和一个隔开的状态来表示取消的项目，可以这样设置：
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
         '((sequence "TODO(t)" "|" "DONE(d)")
